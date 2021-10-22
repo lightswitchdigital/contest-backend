@@ -7,8 +7,8 @@ import (
 
 func main() {
 	config := server.ServerConfig{
-		Host: "127.0.0.1",
-		Port: "8000",
+		Host: "0.0.0.0",
+		Port: "8080",
 	}
 	s, err := server.NewServer(config)
 	if err != nil {
