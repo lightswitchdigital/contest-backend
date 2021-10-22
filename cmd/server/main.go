@@ -2,13 +2,17 @@ package main
 
 import (
 	"github.com/sirupsen/logrus"
+	"os"
 	"parasource/contest/src/server"
 )
 
 func main() {
+	host := os.Getenv("HOST")
+	port := os.Getenv("PORT")
+
 	config := server.ServerConfig{
-		Host: "127.0.0.1",
-		Port: "8080",
+		Host: host,
+		Port: port,
 	}
 	s, err := server.NewServer(config)
 	if err != nil {
