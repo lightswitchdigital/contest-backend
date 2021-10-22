@@ -33,6 +33,7 @@ func NewServer(conf ServerConfig) (*Server, error) {
 
 func (s *Server) setGinHandlers(r *gin.Engine) {
 	r.GET("/", s.handler.HandleIndex)
+	r.GET("/load-available-transport", s.handler.HandleGetAvailableTransport)
 }
 
 func (s *Server) Run(stopCh chan struct{}) {
