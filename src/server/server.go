@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"net"
@@ -33,7 +34,10 @@ func NewServer(conf ServerConfig) (*Server, error) {
 
 func (s *Server) setGinHandlers(r *gin.Engine) {
 	r.GET("/", s.handler.HandleIndex)
-	r.GET("/load-available-transport", s.handler.HandleGetAvailableTransport)
+	r.GET("/transport", s.handler.HandleGetAvailableTransport)
+	r.GET("/transport/:id", s.handler.FindHandler)
+
+	r.Use(cors.Default())
 }
 
 func (s *Server) Run(stopCh chan struct{}) {
